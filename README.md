@@ -6,5 +6,5 @@ Project created to manage the finances of 2 individuals, mainly for study purpos
 
 ```
 npm install
-npm run
+npm start
 ```
