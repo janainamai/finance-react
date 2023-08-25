@@ -1,17 +1,30 @@
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import NavbarHome from '../layout/NavbarHome';
+import Footer from '../layout/Footer';
+import CreateUser from './auth/CreateUser';
+import Login from './auth/Login';
+
+import Container from '../layout/Container'
+import WelcomeHome from './welcome/WelcomeHome';
+
 
 function Home({setToken}) {
 
     return (
-        <div>
-            <h1>Finance</h1>
-            <p>Faça a gestão sustentável do seu dinheiro</p>
+        <Router>
+            <NavbarHome />
 
-            <input 
-                type="text" 
-                placeholder="Qual é o token?" 
-                onChange={(e) => setToken(e.target.value)}
-            />
-        </div>
+            <Container customClass='min-height'>
+                <Routes>
+                    <Route path='/' element={<WelcomeHome />}/>
+                    <Route path='/finance/home' element={<WelcomeHome />}/>
+                    <Route path='/login' element={<Login setToken={setToken}/>} />
+                    <Route path='/create-user' element={<CreateUser />} />
+                </Routes>
+            </Container>
+
+            <Footer />
+        </Router>
     )
 
 }

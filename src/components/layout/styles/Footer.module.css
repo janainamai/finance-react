@@ -1,7 +1,7 @@
 .footer {
     background-color: #222;
     color: #FFF;
-    padding: 3em;
+    padding: 2em;
     text-align: center;
 }
 
@@ -12,7 +12,7 @@
 }
 
 .social_list li {
-    margin: 0 1em;
+    margin: 0 .75em;
 }
 
 .social_list li:hover {
@@ -25,7 +25,7 @@
 }
 
 .copy_right {
-    margin-top: 2em;
+    margin-top: .8em;
 }
 
 .copy_right span {

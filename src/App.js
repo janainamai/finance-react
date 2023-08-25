@@ -1,34 +1,13 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { useState } from 'react'
-import Navbar from './components/layout/Navbar';
-import Footer from './components/layout/Footer';
 import Home from './components/pages/Home';
-import NewUser from './components/pages/NewUser';
-import Login from './components/pages/Login';
-import BankAccount from './components/pages/BankAccount'
-
-import Container from './components/layout/Container'
+import Dashboard from './components/pages/Dashboard'
+import React, { useState } from 'react';
 
 function App() {
 
-  const [token, setToken] = useState()
+  const [token, setToken] = useState('')
 
   return (
-    <Router>
-        <Navbar />
-
-        <Container customClass='min-height'>
-          <Routes>
-            <Route exact path='/' element={<Home setToken={setToken} />} />
-            <Route path='/login' element={<Login />} />
-            <Route path='/cadastrar' element={<NewUser />} />
-            <Route path='/bankAccount' element={<BankAccount />} />
-          </Routes>
-        </Container>
-        
-        <Footer />
-
-    </Router>
+    token === '' ? <Home setToken={setToken} /> : <Dashboard />
   );
 }
 
