@@ -1,12 +1,18 @@
 import TransactionForm from "./TransactionForm"
-import { useNavigate } from 'react-router-dom'
-import styles from './styles/NewTransaction.module.css'
+import { useNavigate, useLocation } from 'react-router-dom'
+import styles from './styles/CreateTransaction.module.css'
 
 function CreateTransaction() {
 
     const navigate = useNavigate()
 
+    const location = useLocation()
+    const params = new URLSearchParams(location.search)
+    const bankAccountId = params.get('bankAccountId')
+    const bankAccountName = params.get('bankAccountName')
+
     function create(transaction) {
+        transaction.bankAccountId = bankAccountId;
 
         const postOptions = {
             method: 'POST',
@@ -28,8 +34,10 @@ function CreateTransaction() {
     return (
         <div className={styles.new_transaction_container}>
             <h1>Cadastrar transação</h1>
-            <p>Cadastre uma transação de débito/crédito para ser calculado no valor total da conta bancária desejada</p>
-            <TransactionForm handleSubmit={create} buttonText='Cadastrar' />
+            <br/>
+            <p>Conta bancária: {bankAccountName}</p>
+
+            <TransactionForm handleSubmit={create} buttonText='Cadastrar' bankAccountId={bankAccountId} bankAccountName={bankAccountName} />
         </div>
     )
 

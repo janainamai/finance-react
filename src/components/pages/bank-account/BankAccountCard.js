@@ -1,6 +1,7 @@
 import styles from './styles/BankAccountCard.module.css'
 import { Link } from 'react-router-dom'
 import { BsPencil, BsFillTrashFill } from 'react-icons/bs'
+import { TbBrandCashapp } from 'react-icons/tb'
 
 function BankAccountCard({ id, name, description, totalBalance, active, handleRemove }) {
 
@@ -23,8 +24,11 @@ function BankAccountCard({ id, name, description, totalBalance, active, handleRe
             </p>
 
             <div className={styles.card_actions}>
-                <Link to='/'>
-                    <BsPencil />Editar
+                <Link to={{
+                    pathname: '/create-transaction',
+                    search: `?bankAccountId=${id}&bankAccountName=${name}`
+                }}>
+                    <TbBrandCashapp />Nova transação
                 </Link>
                 <button onClick={remove}>
                     <BsFillTrashFill />Excluir

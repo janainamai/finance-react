@@ -7,7 +7,7 @@ import InputDate from "../../form/InputDate"
 import InputTime from "../../form/InputTime"
 import styles from './styles/TransactionForm.module.css'
 
-function TransactionForm({ handleSubmit, buttonText, transactionData }) {
+function TransactionForm({ handleSubmit, buttonText, transactionData, bankAccountId, bankAccountName}) {
 
     const [transaction, setTransaction] = useState(transactionData || {})
 
@@ -28,7 +28,6 @@ function TransactionForm({ handleSubmit, buttonText, transactionData }) {
 
     function handleChangeType(event) {
         const newType = event.target.value;
-        console.log(newType)
 
         setTransaction(prevTransaction => ({
             ...prevTransaction, transactionType: newType
@@ -74,14 +73,6 @@ function TransactionForm({ handleSubmit, buttonText, transactionData }) {
                 name='eventTime'
                 handleOnChange={handleChange}
                 value={transaction.eventTime}
-            />
-            <Input
-                type='text'
-                text='Conta bancária'
-                name='bankAccountId'
-                placeholder='Digite a conta bancária'
-                handleOnChange={handleChange}
-                value={transaction.bankAccountId}
             />
 
             <SubmitButton text={buttonText} />

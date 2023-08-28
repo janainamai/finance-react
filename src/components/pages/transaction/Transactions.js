@@ -59,7 +59,6 @@ function Transactions() {
         <div className={styles.container}>
             <div className={styles.title_container}>
                 <h1>Transações</h1>
-                <LinkButton to='/create-transaction' text='Cadastrar' />
             </div>
 
             <div className={styles.loader_container}>
