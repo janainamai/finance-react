@@ -8,10 +8,11 @@
 
 .card h4 {
     background-color: #222;
-    color: #FFBB33;
     padding: .4em;
     margin-bottom: 1.3em;
     font-size: 1.3em;
+    color: white;
+    text-align: center;
 }
 
 .card p {
@@ -67,9 +68,9 @@
 
 
 .type_text .DEBIT {
-    background-color: #FFAEBC;
+    background-color: #da2140;
 }
 
 .type_text .CREDIT {
-    background-color: #4fb476;
+    background-color: #1bc45c;
 }

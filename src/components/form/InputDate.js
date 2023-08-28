@@ -11,6 +11,7 @@ function InputDate({ text, name, handleOnChange, value }) {
                 name={name}
                 value={value}
                 placeholder='YYYY-MM-DD'
+                autoComplete='off'
                 onChange={handleOnChange}
             />
         </div>

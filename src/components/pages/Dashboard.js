@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import NavbarDashboard from '../layout/NavbarDashboard';
 import WelcomeDashboard from './welcome/WelcomeDashboard'
 import Footer from '../layout/Footer';
-import BankAccount from './bank-account/BankAccount';
+import BankAccounts from './bank-account/BankAccounts';
 
 import Container from '../layout/Container'
 import Transactions from './transaction/Transactions';
@@ -19,7 +19,7 @@ function Dashboard() {
             <Container customClass='min-height'>
                 <Routes>
                     <Route path='/finance/dashboard' element={<WelcomeDashboard />}/>
-                    <Route path='/bank-account' element={<BankAccount />} />
+                    <Route path='/bank-account' element={<BankAccounts />} />
                     <Route path='/create-bank-account' element={<CreateBankAccount />} />
                     <Route path='/transaction' element={<Transactions />} />
                     <Route path='/create-transaction' element={<CreateTransaction />} />

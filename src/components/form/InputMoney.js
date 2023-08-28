@@ -13,6 +13,7 @@ function InputMoney({type, text, name, placeholder, handleOnChange, step, min, v
                     step={step}
                     min={min}
                     placeholder={placeholder}
+                    autoComplete='off'
                     onChange={handleOnChange}
                 />
         </div>

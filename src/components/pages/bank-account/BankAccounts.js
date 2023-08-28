@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import LinkButton from '../../form/LinkButton'
 import Message from '../../layout/Message'
@@ -7,31 +7,14 @@ import styles from './styles/BankAccount.module.css'
 import BankAccountCard from './BankAccountCard'
 import Loading from '../../layout/Loading'
 
-function BankAccount() {
+function BankAccounts() {
 
     const [accounts, setAccounts] = useState([])
     const [removeLoading, setRemoveLoading] = useState(false)
-
     const location = useLocation()
-    let message = ''
-    if (location.state) {
-        message = location.state.message
-    }
+    const navigate = useNavigate()
 
-    function remove(id) {
-        const deleteOptions = {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
-            }
-        }
-
-        fetch(`http://localhost:8080/bank/${id}`, deleteOptions)
-    }
-
-    useEffect(() => {
+    function retrieveAll() {
         const getOptions = {
             method: 'GET',
             headers: {
@@ -43,25 +26,46 @@ function BankAccount() {
         fetch('http://localhost:8080/bank', getOptions)
             .then(data => data.json())
             .then(data => {
-                console.log(data)
                 setAccounts(data)
                 setRemoveLoading(true)
             })
             .catch((err) => console.log(err))
+    }
+
+    function remove(account) {
+        const deleteOptions = {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        }
+
+        const url = `http://localhost:8080/bank/${account.id}`
+
+        fetch(url, deleteOptions)
+        .then(() => {
+            retrieveAll()
+            navigate('/bank-account')
+        })
+    }
+
+    useEffect(() => {
+        retrieveAll()
     }, [])
 
     return (
         <div className={styles.container}>
             <div className={styles.title_container}>
                 <h1>Contas bancárias</h1>
-                <LinkButton to='/create-bank-account' text='Criar conta bancária' />
+                <LinkButton to='/create-bank-account' text='Cadastrar' />
             </div>
 
             <div className={styles.loader_container}>
                 {!removeLoading && <Loading />}
             </div>
 
-            {message && <Message message={message} type='success' />}
+            {location?.state?.message && <Message message={location.state.message} type={location.state.type} />}
             <Container customClass='start'>
 
                 {accounts.length > 0 &&
@@ -87,4 +91,4 @@ function BankAccount() {
     )
 }
 
-export default BankAccount
+export default BankAccounts

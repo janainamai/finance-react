@@ -10,7 +10,7 @@ function NavbarDashboard() {
     return (
         <nav className={styles.navbar}>
             <Container>
-                <Link to={'/finance/dashboard'}>
+                <Link className={styles.image} to={'/finance/dashboard'}>
                     <img src={logo} alt='Finance' />
                 </Link>
                 <ul className={styles.list}>

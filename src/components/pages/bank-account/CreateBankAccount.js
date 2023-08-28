@@ -27,7 +27,7 @@ function CreateBankAccount() {
 
         fetch('http://localhost:8080/bank', postOptions)
             .then(data => {
-                navigate('/bank-account', { state: { message: 'Conta bancária criada com sucesso' } })
+                navigate('/bank-account', { state: { message: 'Conta bancária cadastrada com sucesso!', type: 'success' } })
             })
             .catch((err) => console.log(err))
 

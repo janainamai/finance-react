@@ -19,7 +19,7 @@ function CreateTransaction() {
 
         fetch('http://localhost:8080/transaction', postOptions)
             .then((data) => {
-                navigate('/transaction')
+                navigate('/transaction', { state: { message: "Transação cadastrada com sucesso!", type: 'success' } })
             })
             .catch((err) => console.log(err))
 

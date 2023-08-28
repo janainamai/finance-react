@@ -8,10 +8,11 @@
 
 .card h4 {
     background-color: #222;
-    color: #FFBB33;
+    color: white;
     padding: .4em;
     margin-bottom: 1.3em;
     font-size: 1.3em;
+    text-align: center;
 }
 
 .card p {
@@ -67,9 +68,9 @@
 
 
 .active_text .true {
-    background-color: #3a8dfa;
+    background-color: #1bc45c;
 }
 
 .active_text .false {
-    background-color: #FFAEBC;
+    background-color: #da2140;
 }

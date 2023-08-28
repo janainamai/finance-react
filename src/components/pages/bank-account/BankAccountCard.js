@@ -6,7 +6,7 @@ function BankAccountCard({ id, name, description, totalBalance, active, handleRe
 
     const remove = (e) => {
         e.preventDefault()
-        handleRemove(e.id)
+        handleRemove({id})
     }
 
     return (

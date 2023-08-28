@@ -11,6 +11,7 @@ function Input({type, text, name, placeholder, handleOnChange}) {
                     id={name}
                     name={name}
                     placeholder={placeholder}
+                    autoComplete='off'
                     onChange={handleOnChange}
                 />
         </div>

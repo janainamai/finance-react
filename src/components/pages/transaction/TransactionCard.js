@@ -1,11 +1,11 @@
 import styles from './styles/TransactionCard.module.css'
 import { BsFillTrashFill } from 'react-icons/bs'
 
-function TransactionCard({ id, description, amount, transactionType, eventDate, eventTime, bankAccountId, handleRemove }) {
+function TransactionCard({ id, description, amount, transactionType, eventDate, eventTime, bankAccountId, bankAccountName, handleRemove }) {
 
     const remove = (e) => {
         e.preventDefault()
-        handleRemove(e)
+        handleRemove({id})
     }
 
     return (
@@ -28,7 +28,7 @@ function TransactionCard({ id, description, amount, transactionType, eventDate, 
                 <span>Hora:</span> {eventTime}
             </p>
             <p>
-                <span>Conta bancária:</span> {bankAccountId}
+                <span>Conta bancária:</span> {bankAccountName}
             </p>
 
             <div className={styles.card_actions}>

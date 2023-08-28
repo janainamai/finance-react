@@ -1,5 +1,5 @@
 import Message from '../../layout/Message'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import LinkButton from '../../form/LinkButton'
 import styles from './styles/Transactions.module.css'
@@ -11,27 +11,10 @@ function Transactions() {
 
     const [transactions, setTransactions] = useState([])
     const [removeLoading, setRemoveLoading] = useState(false)
-
     const location = useLocation()
-    let message = ''
-    if (location.state) {
-        message = location.state.message
-    }
+    const navigate = useNavigate()
 
-    function remove(id) {
-        const deleteOptions = {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-                'Access-Control-Allow-Origin': '*',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
-            }
-        }
-
-        fetch(`http://localhost:8080/transacton/${id}`, deleteOptions)
-    }
-
-    useEffect(() => {
+    function retrieveAll() {
         const getOptions = {
             method: 'GET',
             headers: {
@@ -48,6 +31,28 @@ function Transactions() {
                 setRemoveLoading(true)
             })
             .catch((err) => console.log(err))
+    }
+
+    function remove(transaction) {
+        const deleteOptions = {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${localStorage.getItem('token')}`
+            }
+        }
+
+        const url = `http://localhost:8080/transaction/${transaction.id}`
+
+        fetch(url, deleteOptions)
+        .then(() => {
+            retrieveAll()
+            navigate('/transaction')
+        })
+    }
+
+    useEffect(() => {
+        retrieveAll()
     }, [])
 
     return (
@@ -61,10 +66,10 @@ function Transactions() {
                 {!removeLoading && <Loading />}
             </div>
 
-            {message && <Message message={message} type='success' />}
+            {location?.state?.message && <Message message={location.state.message} type={location.state.type} />}
             <Container customClass='start'>
                 {transactions.length === 0 && (
-                    <p>Nenhuma transação encontrada</p>
+                    <p>Não existem transações cadastradas</p>
                 )}
 
                 {transactions.length > 0 && (
@@ -77,6 +82,7 @@ function Transactions() {
                             eventDate={transaction.eventDate}
                             eventTime={transaction.eventTime}
                             bankAccountId={transaction.bankAccountId}
+                            bankAccountName={transaction.bankAccountName}
                             handleRemove={remove}
                         />
                     ))
