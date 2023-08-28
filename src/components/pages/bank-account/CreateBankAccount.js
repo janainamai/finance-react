@@ -1,11 +1,12 @@
 import { useState } from "react"
-import { Navigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import Input from "../../form/Input"
 import SubmitButton from "../../form/SubmitButton"
-import styles from './styles/NewBankAccount.module.css'
+import styles from './styles/CreateBankAccount.module.css'
 
 function CreateBankAccount() {
 
+    const navigate = useNavigate()
     const [bankAccount, setBankAccount] = useState()
 
     function handleChange(e) {
@@ -13,20 +14,20 @@ function CreateBankAccount() {
     }
 
     function create(e) {
-        
+        e.preventDefault()
+
         const postOptions = {
             method: 'POST',
-            headers: { 
-                'Content-Type': 'application/json' ,
+            headers: {
+                'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             },
             body: JSON.stringify(bankAccount),
         }
 
         fetch('http://localhost:8080/bank', postOptions)
-            .then(response => response.json())
             .then(data => {
-                <Navigate to='/bank-account'/>
+                navigate('/bank-account', { state: { message: 'Conta bancária criada com sucesso' } })
             })
             .catch((err) => console.log(err))
 

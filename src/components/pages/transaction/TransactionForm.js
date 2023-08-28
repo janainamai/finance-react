@@ -17,6 +17,8 @@ function TransactionForm({ handleSubmit, buttonText, transactionData }) {
     };
 
     const submit = (e) => {
+        e.preventDefault()
+
         handleSubmit(transaction)
     }
 

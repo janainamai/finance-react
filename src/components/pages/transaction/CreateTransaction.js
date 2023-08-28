@@ -18,7 +18,6 @@ function CreateTransaction() {
         }
 
         fetch('http://localhost:8080/transaction', postOptions)
-            .then(response => response.json())
             .then((data) => {
                 navigate('/transaction')
             })
