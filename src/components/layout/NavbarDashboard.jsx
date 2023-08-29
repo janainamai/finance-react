@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 
-import Container from './Container'
+import Container from './Container.jsx'
 
 import styles from './styles/Navbar.module.css'
 import logo from '../../images/costs_logo.png'
@@ -15,10 +15,10 @@ function NavbarDashboard() {
                 </Link>
                 <ul className={styles.list}>
                     <li className={styles.item}>
-                        <Link to='/bank-account'>Conta bancária</Link>
+                        <Link to='/bank-accounts'>Conta bancária</Link>
                     </li>
                     <li className={styles.item}>
-                        <Link to='/transaction'>Transação</Link>
+                        <Link to='/transactions'>Transação</Link>
                     </li>
                 </ul>
             </Container>

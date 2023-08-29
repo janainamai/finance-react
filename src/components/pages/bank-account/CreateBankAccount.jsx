@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from 'react-router-dom'
-import Input from "../../form/Input"
-import SubmitButton from "../../form/SubmitButton"
+import Input from "../../form/Input.jsx"
+import SubmitButton from "../../form/SubmitButton.jsx"
 import styles from './styles/CreateBankAccount.module.css'
 
 function CreateBankAccount() {
@@ -27,7 +27,7 @@ function CreateBankAccount() {
 
         fetch('http://localhost:8080/bank', postOptions)
             .then(data => {
-                navigate('/bank-account', { state: { message: 'Conta bancária cadastrada com sucesso!', type: 'success' } })
+                navigate('/bank-accounts', { state: { message: 'Conta bancária cadastrada com sucesso!', type: 'success' } })
             })
             .catch((err) => console.log(err))
 

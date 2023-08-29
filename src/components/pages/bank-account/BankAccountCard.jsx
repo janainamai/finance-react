@@ -1,13 +1,13 @@
 import styles from './styles/BankAccountCard.module.css'
 import { Link } from 'react-router-dom'
-import { BsFillTrashFill } from 'react-icons/bs'
+import { BsFillTrashFill, BsPencil } from 'react-icons/bs'
 import { TbBrandCashapp } from 'react-icons/tb'
 
 function BankAccountCard({ id, name, description, totalBalance, active, handleRemove }) {
 
     const remove = (e) => {
         e.preventDefault()
-        handleRemove({id})
+        handleRemove({ id })
     }
 
     function formatValue(totalBalance) {
@@ -33,9 +33,11 @@ function BankAccountCard({ id, name, description, totalBalance, active, handleRe
             <div className={styles.card_actions}>
                 <Link to={{
                     pathname: '/create-transaction',
-                    search: `?bankAccountId=${id}&bankAccountName=${name}`
-                }}>
-                    <TbBrandCashapp />Nova transação
+                    search: `?bankAccountId=${id}&bankAccountName=${name}`}}>
+                    <TbBrandCashapp />Transação
+                </Link>
+                <Link to={`/bank-account/${id}`} >
+                    <BsPencil />Edit
                 </Link>
                 <button onClick={remove}>
                     <BsFillTrashFill />Excluir

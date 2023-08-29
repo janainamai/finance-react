@@ -1,6 +1,6 @@
-import SubmitButton from '../../form/SubmitButton'
+import SubmitButton from '../../form/SubmitButton.jsx'
 import { useState } from 'react'
-import Input from '../../form/Input'
+import Input from '../../form/Input.jsx'
 import styles from './styles/NewUser.module.css'
 
 function CreateUser() {

@@ -1,7 +1,7 @@
 import styles from './styles/Login.module.css'
-import SubmitButton from "../../form/SubmitButton"
+import SubmitButton from "../../form/SubmitButton.jsx"
 import { useState } from "react"
-import Input from "../../form/Input"
+import Input from "../../form/Input.jsx"
 import login_img from '../../../images/login.png'
 import { useNavigate } from 'react-router-dom'
 
@@ -29,7 +29,7 @@ function Login({setToken}) {
             .then((data) => {
                 setToken(data.token)
                 localStorage.setItem('token', data.token);
-                navigate('/bank-account')
+                navigate('/bank-accounts')
             })
             .catch((err) => {
                 console.log(err)

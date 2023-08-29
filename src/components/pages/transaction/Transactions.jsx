@@ -1,10 +1,10 @@
-import Message from '../../layout/Message'
+import Message from '../../layout/Message.jsx'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import styles from './styles/Transactions.module.css'
-import Container from '../../layout/Container'
-import TransactionCard from './TransactionCard'
-import Loading from '../../layout/Loading'
+import Container from '../../layout/Container.jsx'
+import TransactionCard from './TransactionCard.jsx'
+import Loading from '../../layout/Loading.jsx'
 
 function Transactions() {
 
@@ -52,12 +52,12 @@ function Transactions() {
             }
         }
 
-        const url = `http://localhost:8080/transaction/${transaction.id}`
+        const url = `http://localhost:8080/transactions/${transaction.id}`
 
         fetch(url, deleteOptions)
             .then(() => {
                 retrieveAll()
-                navigate('/transaction')
+                navigate('/transactions')
                 setTransactionMessage('Transação excluída com sucesso')
             })
             .catch(err => {

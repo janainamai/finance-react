@@ -1,6 +1,6 @@
 import styles from './styles/Welcome.module.css'
 import savings from '../../../images/savings.svg'
-import LinkButton from '../../form/LinkButton';
+import LinkButton from '../../form/LinkButton.jsx';
 
 function WelcomeHome() {
 

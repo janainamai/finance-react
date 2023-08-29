@@ -1,11 +1,11 @@
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import LinkButton from '../../form/LinkButton'
-import Message from '../../layout/Message'
-import Container from '../../layout/Container'
+import LinkButton from '../../form/LinkButton.jsx'
+import Message from '../../layout/Message.jsx'
+import Container from '../../layout/Container.jsx'
 import styles from './styles/BankAccounts.module.css'
-import BankAccountCard from './BankAccountCard'
-import Loading from '../../layout/Loading'
+import BankAccountCard from './BankAccountCard.jsx'
+import Loading from '../../layout/Loading.jsx'
 
 function BankAccounts() {
 
@@ -55,7 +55,7 @@ function BankAccounts() {
         fetch(url, deleteOptions)
         .then(() => {
             retrieveAll()
-            navigate('/bank-account')
+            navigate('/bank-accounts')
             setSuccessMessage('Conta bancária removida com sucesso!')
         })
         .catch(err => {

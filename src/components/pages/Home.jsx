@@ -1,11 +1,11 @@
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import NavbarHome from '../layout/NavbarHome';
-import Footer from '../layout/Footer';
-import CreateUser from './auth/CreateUser';
-import Login from './auth/Login';
+import NavbarHome from '../layout/NavbarHome.jsx';
+import Footer from '../layout/Footer.jsx';
+import CreateUser from './auth/CreateUser.jsx';
+import Login from './auth/Login.jsx';
 
-import Container from '../layout/Container'
-import WelcomeHome from './welcome/WelcomeHome';
+import Container from '../layout/Container.jsx'
+import WelcomeHome from './welcome/WelcomeHome.jsx';
 
 
 function Home({setToken}) {

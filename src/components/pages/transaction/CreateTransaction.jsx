@@ -1,4 +1,4 @@
-import TransactionForm from "./TransactionForm"
+import TransactionForm from "./TransactionForm.jsx"
 import { useNavigate, useLocation } from 'react-router-dom'
 import styles from './styles/CreateTransaction.module.css'
 
@@ -25,7 +25,7 @@ function CreateTransaction() {
 
         fetch('http://localhost:8080/transaction', postOptions)
             .then((data) => {
-                navigate('/transaction', { state: { message: "Transação cadastrada com sucesso!", type: 'success' } })
+                navigate('/transactions', { state: { message: "Transação cadastrada com sucesso!", type: 'success' } })
             })
             .catch((err) => console.log(err))
 

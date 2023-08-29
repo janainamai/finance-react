@@ -1,5 +1,5 @@
-import Home from './components/pages/Home';
-import Dashboard from './components/pages/Dashboard'
+import Home from './components/pages/Home.jsx';
+import Dashboard from './components/pages/Dashboard.jsx'
 import React, { useState } from 'react';
 
 function App() {

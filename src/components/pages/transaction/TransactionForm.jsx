@@ -1,10 +1,10 @@
 import { useState } from "react"
-import Input from "../../form/Input"
-import InputMoney from "../../form/InputMoney"
-import Select from "../../form/Select"
-import SubmitButton from "../../form/SubmitButton"
-import InputDate from "../../form/InputDate"
-import InputTime from "../../form/InputTime"
+import Input from "../../form/Input.jsx"
+import InputMoney from "../../form/InputMoney.jsx"
+import Select from "../../form/Select.jsx"
+import SubmitButton from "../../form/SubmitButton.jsx"
+import InputDate from "../../form/InputDate.jsx"
+import InputTime from "../../form/InputTime.jsx"
 import styles from './styles/TransactionForm.module.css'
 
 function TransactionForm({ handleSubmit, buttonText, transactionData, bankAccountId, bankAccountName}) {
