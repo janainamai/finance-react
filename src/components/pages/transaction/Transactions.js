@@ -1,7 +1,6 @@
 import Message from '../../layout/Message'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
-import LinkButton from '../../form/LinkButton'
 import styles from './styles/Transactions.module.css'
 import Container from '../../layout/Container'
 import TransactionCard from './TransactionCard'
@@ -11,10 +10,14 @@ function Transactions() {
 
     const [transactions, setTransactions] = useState([])
     const [removeLoading, setRemoveLoading] = useState(false)
+    const [transactionMessage, setTransactionMessage] = useState('')
+
     const location = useLocation()
     const navigate = useNavigate()
 
     function retrieveAll() {
+        setRemoveLoading(false)
+
         const getOptions = {
             method: 'GET',
             headers: {
@@ -28,12 +31,19 @@ function Transactions() {
             .then(data => {
                 console.log(data)
                 setTransactions(data)
+            })
+            .catch(err => {
+                console.log(err)
+            })
+            .finally(() => {
                 setRemoveLoading(true)
             })
-            .catch((err) => console.log(err))
+
     }
 
     function remove(transaction) {
+        setRemoveLoading(false)
+
         const deleteOptions = {
             method: 'DELETE',
             headers: {
@@ -45,10 +55,17 @@ function Transactions() {
         const url = `http://localhost:8080/transaction/${transaction.id}`
 
         fetch(url, deleteOptions)
-        .then(() => {
-            retrieveAll()
-            navigate('/transaction')
-        })
+            .then(() => {
+                retrieveAll()
+                navigate('/transaction')
+                setTransactionMessage('Transação excluída com sucesso')
+            })
+            .catch(err => {
+                console.log(err)
+            })
+            .finally(() => {
+                setRemoveLoading(true)
+            })
     }
 
     useEffect(() => {
@@ -66,6 +83,7 @@ function Transactions() {
             </div>
 
             {location?.state?.message && <Message message={location.state.message} type={location.state.type} />}
+            {transactionMessage && <Message message={transactionMessage} type='success'/>}
             <Container customClass='start'>
                 {transactions.length === 0 && (
                     <p>Não existem transações cadastradas</p>

@@ -29,7 +29,7 @@ function Login({setToken}) {
             .then((data) => {
                 setToken(data.token)
                 localStorage.setItem('token', data.token);
-                navigate('/finance/dashboard')
+                navigate('/bank-account')
             })
             .catch((err) => {
                 console.log(err)

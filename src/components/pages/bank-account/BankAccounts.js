@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react'
 import LinkButton from '../../form/LinkButton'
 import Message from '../../layout/Message'
 import Container from '../../layout/Container'
-import styles from './styles/BankAccount.module.css'
+import styles from './styles/BankAccounts.module.css'
 import BankAccountCard from './BankAccountCard'
 import Loading from '../../layout/Loading'
 
@@ -11,10 +11,15 @@ function BankAccounts() {
 
     const [accounts, setAccounts] = useState([])
     const [removeLoading, setRemoveLoading] = useState(false)
+    const [successMessage, setSuccessMessage] = useState('')
+    const [errorMessage, setErrorMessage] = useState('')
+
     const location = useLocation()
     const navigate = useNavigate()
 
     function retrieveAll() {
+        setRemoveLoading(false)
+
         const getOptions = {
             method: 'GET',
             headers: {
@@ -27,12 +32,16 @@ function BankAccounts() {
             .then(data => data.json())
             .then(data => {
                 setAccounts(data)
-                setRemoveLoading(true)
             })
             .catch((err) => console.log(err))
+            .finally(() => {
+                setRemoveLoading(true)
+            })
     }
 
     function remove(account) {
+        setRemoveLoading(false)
+
         const deleteOptions = {
             method: 'DELETE',
             headers: {
@@ -47,6 +56,14 @@ function BankAccounts() {
         .then(() => {
             retrieveAll()
             navigate('/bank-account')
+            setSuccessMessage('Conta bancária removida com sucesso!')
+        })
+        .catch(err => {
+            console.log(err)
+            setErrorMessage(`Erro ao remover a conta bancária: ${err}`)
+        })
+        .finally(() => {
+            setRemoveLoading(true)
         })
     }
 
@@ -66,6 +83,9 @@ function BankAccounts() {
             </div>
 
             {location?.state?.message && <Message message={location.state.message} type={location.state.type} />}
+            {successMessage && <Message message={successMessage} type='success' />}
+            {errorMessage && <Message message={errorMessage} type='error' />}
+
             <Container customClass='start'>
 
                 {accounts.length > 0 &&

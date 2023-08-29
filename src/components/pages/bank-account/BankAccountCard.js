@@ -1,6 +1,6 @@
 import styles from './styles/BankAccountCard.module.css'
 import { Link } from 'react-router-dom'
-import { BsPencil, BsFillTrashFill } from 'react-icons/bs'
+import { BsFillTrashFill } from 'react-icons/bs'
 import { TbBrandCashapp } from 'react-icons/tb'
 
 function BankAccountCard({ id, name, description, totalBalance, active, handleRemove }) {
@@ -10,6 +10,13 @@ function BankAccountCard({ id, name, description, totalBalance, active, handleRe
         handleRemove({id})
     }
 
+    function formatValue(totalBalance) {
+        return parseFloat(totalBalance).toLocaleString('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+        })
+    }
+
     return (
         <div className={styles.card}>
             <h4>{name}</h4>
@@ -17,7 +24,7 @@ function BankAccountCard({ id, name, description, totalBalance, active, handleRe
                 <span>Descrição:</span> {description}
             </p>
             <p>
-                <span>Valor total:</span> {totalBalance}
+                <span>Valor total:</span> {formatValue(totalBalance)}
             </p>
             <p className={styles.active_text}>
                 <span className={`${styles[active]}`}></span> Conta {active === true ? 'ativa' : 'desativada'}
