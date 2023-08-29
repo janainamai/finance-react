@@ -1,28 +1,19 @@
-import { useState } from "react"
 import { useNavigate } from 'react-router-dom'
-import Input from "../../form/Input.jsx"
-import SubmitButton from "../../form/SubmitButton.jsx"
 import styles from './styles/CreateBankAccount.module.css'
+import BankAccountForm from "./BankAccountForm.jsx"
 
 function CreateBankAccount() {
 
     const navigate = useNavigate()
-    const [bankAccount, setBankAccount] = useState()
 
-    function handleChange(e) {
-        setBankAccount({ ...bankAccount, [e.target.name]: e.target.value })
-    }
-
-    function create(e) {
-        e.preventDefault()
-
+    function create(account) {
         const postOptions = {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${localStorage.getItem('token')}`
             },
-            body: JSON.stringify(bankAccount),
+            body: JSON.stringify(account),
         }
 
         fetch('http://localhost:8080/bank', postOptions)
@@ -38,25 +29,7 @@ function CreateBankAccount() {
             <h1>Cadastrar conta bancária</h1>
             <p>Cadastre uma conta bancária para gerenciar sua renda</p>
 
-            <form onSubmit={create}>
-                <Input
-                    type='text'
-                    text='Nome'
-                    name='name'
-                    placeholder='Digite o nome'
-                    handleOnChange={handleChange}
-                />
-                <Input
-                    type='text'
-                    text='Descrição'
-                    name='description'
-                    placeholder='Digite a descrição'
-                    handleOnChange={handleChange}
-                />
-
-                <SubmitButton text="Cadastrar" />
-
-            </form>
+            <BankAccountForm handleSubmit={create} buttonText='Cadastrar' />
 
         </div>
     )

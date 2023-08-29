@@ -7,14 +7,14 @@ import InputDate from "../../form/InputDate.jsx"
 import InputTime from "../../form/InputTime.jsx"
 import styles from './styles/TransactionForm.module.css'
 
-function TransactionForm({ handleSubmit, buttonText, transactionData, bankAccountId, bankAccountName}) {
+function TransactionForm({ handleSubmit, buttonText, transactionData}) {
 
     const [transaction, setTransaction] = useState(transactionData || {})
 
     const transactionTypes = {
         DEBIT: 'Débito',
         CREDIT: 'Crédito'
-    };
+    }
 
     const submit = (e) => {
         e.preventDefault()
@@ -58,7 +58,7 @@ function TransactionForm({ handleSubmit, buttonText, transactionData, bankAccoun
             <Select
                 text='Tipo da transação'
                 name='transactionType'
-                transactionTypes={transactionTypes}
+                options={transactionTypes}
                 handleOnChange={handleChangeType}
                 value={transaction.transactionType}
             />

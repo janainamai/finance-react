@@ -1,0 +1,25 @@
+.form_control {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: .7em;
+}
+
+.form_control label {
+    margin-bottom: .1em;
+    font-weight: bold;
+}
+
+.options {
+    display: flex;
+    flex-direction: row;
+}
+
+.option {
+    margin-right: .8em;
+    display: flex;
+}
+
+.option p {
+    margin: .3em;
+    text-align: center;
+}

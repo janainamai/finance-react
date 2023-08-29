@@ -1,6 +1,6 @@
 import styles from './styles/Select.module.css'
 
-function Select({ text, name, handleOnChange, transactionTypes, value }) {
+function Select({ text, name, handleOnChange, options, value }) {
 
     return (
         <div className={styles.form_control}>
@@ -13,8 +13,8 @@ function Select({ text, name, handleOnChange, transactionTypes, value }) {
                 value={value || ''}
             >
                 <option>Selecione uma transação</option>
-                {Object.keys(transactionTypes).map(key => (
-                    <option key={key} value={key}>{transactionTypes[key]}</option>
+                {Object.keys(options).map(key => (
+                    <option key={key} value={key}>{options[key]}</option>
                 ))}
             </select>
         </div>

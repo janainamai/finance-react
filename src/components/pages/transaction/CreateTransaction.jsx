@@ -24,8 +24,8 @@ function CreateTransaction() {
         }
 
         fetch('http://localhost:8080/transaction', postOptions)
-            .then((data) => {
-                navigate('/transactions', { state: { message: "Transação cadastrada com sucesso!", type: 'success' } })
+            .then(data => {
+                navigate(`/bank-account/${bankAccountId}`, { state: { message: "Transação cadastrada com sucesso!", type: 'success' } })
             })
             .catch((err) => console.log(err))
 
@@ -37,7 +37,7 @@ function CreateTransaction() {
             <br/>
             <p>Conta bancária: {bankAccountName}</p>
 
-            <TransactionForm handleSubmit={create} buttonText='Cadastrar' bankAccountId={bankAccountId} bankAccountName={bankAccountName} />
+            <TransactionForm handleSubmit={create} buttonText='Cadastrar' />
         </div>
     )
 

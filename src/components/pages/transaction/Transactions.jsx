@@ -52,7 +52,7 @@ function Transactions() {
             }
         }
 
-        const url = `http://localhost:8080/transactions/${transaction.id}`
+        const url = `http://localhost:8080/transaction/${transaction.id}`
 
         fetch(url, deleteOptions)
             .then(() => {

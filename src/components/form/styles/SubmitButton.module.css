@@ -6,6 +6,8 @@ button {
     transition: .5s;
     cursor: pointer;
     border: none;
+
+    font-size: 0.9em;
 }
 
 .button:hover {

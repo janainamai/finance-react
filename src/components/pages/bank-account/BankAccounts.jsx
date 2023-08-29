@@ -1,4 +1,4 @@
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useLocation } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import LinkButton from '../../form/LinkButton.jsx'
 import Message from '../../layout/Message.jsx'
@@ -11,11 +11,8 @@ function BankAccounts() {
 
     const [accounts, setAccounts] = useState([])
     const [removeLoading, setRemoveLoading] = useState(false)
-    const [successMessage, setSuccessMessage] = useState('')
-    const [errorMessage, setErrorMessage] = useState('')
 
     const location = useLocation()
-    const navigate = useNavigate()
 
     function retrieveAll() {
         setRemoveLoading(false)
@@ -39,34 +36,6 @@ function BankAccounts() {
             })
     }
 
-    function remove(account) {
-        setRemoveLoading(false)
-
-        const deleteOptions = {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': `Bearer ${localStorage.getItem('token')}`
-            }
-        }
-
-        const url = `http://localhost:8080/bank/${account.id}`
-
-        fetch(url, deleteOptions)
-        .then(() => {
-            retrieveAll()
-            navigate('/bank-accounts')
-            setSuccessMessage('Conta bancária removida com sucesso!')
-        })
-        .catch(err => {
-            console.log(err)
-            setErrorMessage(`Erro ao remover a conta bancária: ${err}`)
-        })
-        .finally(() => {
-            setRemoveLoading(true)
-        })
-    }
-
     useEffect(() => {
         retrieveAll()
     }, [])
@@ -83,8 +52,6 @@ function BankAccounts() {
             </div>
 
             {location?.state?.message && <Message message={location.state.message} type={location.state.type} />}
-            {successMessage && <Message message={successMessage} type='success' />}
-            {errorMessage && <Message message={errorMessage} type='error' />}
 
             <Container customClass='start'>
 
@@ -97,7 +64,6 @@ function BankAccounts() {
                             totalBalance={account.totalBalance}
                             key={account.id}
                             active={account.active}
-                            handleRemove={remove}
                         />
                     ))
                 }
