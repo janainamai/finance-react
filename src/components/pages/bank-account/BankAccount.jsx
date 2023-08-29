@@ -32,7 +32,7 @@ function BankAccount() {
             retrieveBankAccount()
             retrieveTransactions()
         }
-    }, [id])
+    }, [])
 
     function retrieveBankAccount() {
         setRemoveLoadingBankAccount(false)
@@ -46,7 +46,6 @@ function BankAccount() {
         })
             .then(resp => resp.json())
             .then(account => {
-                console.log(account)
                 setAccount(account)
             })
             .catch(err => console.log(err))
@@ -68,7 +67,6 @@ function BankAccount() {
         })
             .then(resp => resp.json())
             .then(transactions => {
-                console.log(transactions)
                 setTransactions(transactions)
             })
             .catch(err => console.log(err))
@@ -95,7 +93,6 @@ function BankAccount() {
                 navigate('/bank-accounts', { state: { message: 'Conta bancária removida com sucesso!', type: 'success' } })
             })
             .catch(err => {
-                console.log(err)
                 setAccountMessage(`Erro ao remover conta bancária: ${err}`)
                 setTypeMessage('error')
             })
@@ -130,7 +127,7 @@ function BankAccount() {
                 setShowAccountForm(false)
                 retrieveBankAccount()
                 retrieveTransactions()
-
+                
                 setRemoveLoadingTransactions(true)
             })
     }
