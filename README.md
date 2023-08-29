@@ -9,13 +9,13 @@ npm install
 npm start
 ```
 
-## Próximas implementações
+## Next implementations:
 
-- Não abrir tela dashboard se o usuário não possui role's
-- Refatorar e separar as chamadas para api's em arquivos específicos para isso
-- Implementar mensagens de erro em todas as apis utilizadas
-- Controle por role: telas não devem renderizar e mensagens de erro devem aparecer se o usuário não possui a role necessária para utilizar os serviços
-- Disponibilizar filtros para consultar transação na tela da conta bancária por período e tipo de transação
-- Refatorar TransactionCard para algo mais apresentável e bonito
-- Disponibilizar personalização da cor principal das telas
-- Mostrar botão de gerenciamento de roles e usuários para quem possui role ADMIN na Navbar
+- Do not open the dashboard screen if the user doesn't have any roles.
+- Refactor and separate API calls into specific files for that purpose.
+- Implement error messages for all used APIs.
+- Role-based control: screens should not render and error messages should appear if the user doesn't have the necessary role to access the services.
+- Provide filters to query transactions on the bank account screen by period and transaction type.
+- Refactor the TransactionCard for a more presentable and visually appealing design.
+- Allow customization of the main screen color.
+- Display a management button for roles and users in the Navbar for users with an ADMIN role.
