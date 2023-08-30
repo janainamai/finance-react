@@ -8,7 +8,7 @@ import Container from '../layout/Container.jsx'
 import WelcomeHome from './welcome/WelcomeHome.jsx';
 
 
-function Home({setToken}) {
+function Home() {
 
     return (
         <Router>
@@ -18,7 +18,7 @@ function Home({setToken}) {
                 <Routes>
                     <Route path='/' element={<WelcomeHome />}/>
                     <Route path='/finance/home' element={<WelcomeHome />}/>
-                    <Route path='/login' element={<Login setToken={setToken}/>} />
+                    <Route path='/login' element={<Login />} />
                     <Route path='/create-user' element={<CreateUser />} />
                 </Routes>
             </Container>

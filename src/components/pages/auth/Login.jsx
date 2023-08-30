@@ -4,18 +4,21 @@ import { useState } from "react"
 import Input from "../../form/Input.jsx"
 import login_img from '../../../images/login.png'
 import { useNavigate } from 'react-router-dom'
+import Message from '../../layout/Message'
 
-function Login({setToken}) {
+function Login() {
 
-    const navigate = useNavigate ()
+    const navigate = useNavigate()
 
     const [payload, setPayload] = useState()
-    
+    const [errorMessage, setErrorMessage] = useState()
+
     function handleChange(e) {
         setPayload({ ...payload, [e.target.name]: e.target.value })
     }
 
     function loginUser(e) {
+        setErrorMessage()
         e.preventDefault()
 
         const postOptions = {
@@ -27,19 +30,22 @@ function Login({setToken}) {
         fetch('http://localhost:8080/auth/login', postOptions)
             .then(response => response.json())
             .then((data) => {
-                setToken(data.token)
                 localStorage.setItem('token', data.token);
                 navigate('/bank-accounts')
             })
             .catch((err) => {
-                console.log(err)
+                setErrorMessage('Login e/ou senha estão incorretos')
             })
-            
+
     }
 
     return (
         <div className={styles.login_container}>
-            <img src={login_img} alt='Login do usuário'/>
+            <img src={login_img} alt='Login do usuário' />
+
+            <div className={styles.message}>
+                {errorMessage && <Message message={errorMessage} type={'error'} />}
+            </div>
 
             <form className={styles.form} onSubmit={loginUser}>
                 <Input

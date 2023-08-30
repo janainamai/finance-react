@@ -30,7 +30,7 @@ function CreateUser() {
 
         fetch('http://localhost:8080/auth/register', postOptions)
             .then(data => {
-                navigate('/', { state: { message: 'Sua conta foi criada com sucesso, você receberá um email de autorização, aguarde e seja bem vindo!', type: 'success' } })
+                navigate('/finance/home', { state: { message: 'Sua conta foi criada com sucesso, você receberá um email de autorização, aguarde e seja bem vindo!', type: 'success' } })
             })
 
     }

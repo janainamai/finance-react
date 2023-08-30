@@ -4,11 +4,9 @@ import React, { useState } from 'react';
 
 function App() {
 
-  const [token, setToken] = useState('')
-
   return (
-    token === '' ? <Home setToken={setToken} /> : <Dashboard />
+    localStorage.getItem('token') === '' ? <Home /> : <Dashboard />
   );
 }
 
-export default App;
+export default App

@@ -20,6 +20,7 @@ function Dashboard() {
 
             <Container customClass='min-height'>
                 <Routes>
+                    <Route path='/' element={<WelcomeDashboard />}/>
                     <Route path='/finance/dashboard' element={<WelcomeDashboard />}/>
 
                     <Route path='/bank-account/:id' element={<BankAccount />} />
